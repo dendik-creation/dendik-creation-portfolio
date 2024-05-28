@@ -21,7 +21,7 @@ const Education: React.FC<EducationTab> = ({ education }) => {
           {education?.items?.map((item, index) => (
             <li
               key={index}
-              className="bg-[#232329] h-[184px] py-6 px-10 ronded-xl flex flex-col justify-center items-center gap-1 lg:items-start"
+              className="bg-[#232329] h-[184px] py-6 px-10 ronded-xl flex flex-col justify-start items-start gap-1 lg:items-start"
             >
               <span className="text-accent">{item?.duration}</span>
               <span className="text-xl max-w-[260px] min-h-[60px] text-left">

@@ -3,13 +3,13 @@ import React from "react";
 
 const stairAnimate = {
   initial: {
-    bottom: "0%",
+    top: "0%",
   },
   animate: {
-    bottom: "100%",
+    top: "100%",
   },
   exit: {
-    bottom: ["100%", "0%"],
+    top: ["100%", "0%"],
   },
 };
 

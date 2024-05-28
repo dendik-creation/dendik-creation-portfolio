@@ -1,8 +1,10 @@
-import Photo from "@/components/common/Home/Photo";
-import Socials from "@/components/common/Home/Socials";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import React from "react";
+// Component
+import Photo from "@/components/common/Home/Photo";
+import Socials from "@/components/common/Home/Socials";
+import Stats from "@/components/common/Home/Stats";
 
 const Home: React.FC = () => {
   return (
@@ -44,6 +46,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
+      <Stats />
     </section>
   );
 };

@@ -6,7 +6,7 @@ import {
   ExperienceMe,
   SkillMe,
 } from "@/types/TypeAbout";
-import React from "react";
+import React, { useState } from "react";
 
 import {
   FaBootstrap,
@@ -21,7 +21,7 @@ import {
 } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Experience from "@/components/common/About/Experience";
 import Education from "@/components/common/About/Education";
 import Skills from "@/components/common/About/Skills";
@@ -180,12 +180,22 @@ const skills: SkillMe = {
 };
 
 const variants = {
-  hidden: { opacity: 0 },
-  enter: { opacity: 1 },
-  exit: { opacity: 0 },
+  initial: {
+    opacity: 0,
+    y: -40,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+  },
+  exit: {
+    opacity: 0,
+    y: 40,
+  },
 };
 
 const About: React.FC = () => {
+  const [activeTab, setTab] = useState<string>("about_me");
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -202,12 +212,14 @@ const About: React.FC = () => {
       <div className="container mx-auto">
         <Tabs
           defaultValue="about_me"
+          value={activeTab}
+          onValueChange={(e) => setTab(e)}
           className="flex flex-col xl:flex-row gap-[60px]"
         >
           <TabsList className="grid grid-cols-2 w-full xl:max-w-[380px] mx-auto xl:mx-0 gap-6">
             <TabsTrigger className="relative overflow-hidden" value="about_me">
-              <div className="hidden xl:flex absolute -bottom-10 left-2 opacity-30">
-                <UserSearch className="w-44 h-44" />
+              <div className="flex absolute -bottom-4 xl:-bottom-10 left-2 opacity-30">
+                <UserSearch className="xl:w-44 xl:h-44 w-16 h-16" />
               </div>
               <span className="static xl:absolute left-0 w-full text-center xl:top-8 xl:text-2xl text-balance">
                 About Me
@@ -217,24 +229,24 @@ const About: React.FC = () => {
               className="relative overflow-hidden"
               value="experience"
             >
-              <div className="hidden xl:flex absolute -bottom-8 left-2 opacity-30">
-                <BarChart2 className="w-44 h-44" />
+              <div className="flex absolute -bottom-3 xl:-bottom-8 left-2 opacity-30">
+                <BarChart2 className="xl:w-44 xl:h-44 w-16 h-16" />
               </div>
               <span className="static xl:absolute left-0 w-full text-center xl:top-8 xl:text-2xl text-balance">
                 Experience
               </span>
             </TabsTrigger>
             <TabsTrigger className="relative overflow-hidden" value="education">
-              <div className="hidden xl:flex absolute -bottom-14 left-2 opacity-30">
-                <GraduationCap className="w-44 h-44" />
+              <div className="flex absolute -bottom-6 xl:-bottom-14 left-2 opacity-30">
+                <GraduationCap className="xl:w-44 xl:h-44 w-16 h-16" />
               </div>
               <span className="static xl:absolute left-0 w-full text-center xl:top-8 xl:text-2xl text-balance">
                 Education
               </span>
             </TabsTrigger>
             <TabsTrigger className="relative overflow-hidden" value="skills">
-              <div className="hidden xl:flex absolute -bottom-12 left-2 opacity-30">
-                <Wrench className="w-44 h-44" />
+              <div className="flex absolute -bottom-6 xl:-bottom-12 left-2 opacity-30">
+                <Wrench className="xl:w-44 xl:h-44 w-16 h-16" />
               </div>
               <span className="static xl:absolute left-0 w-full text-center xl:top-8 xl:text-2xl text-balance">
                 Skills
@@ -243,51 +255,58 @@ const About: React.FC = () => {
           </TabsList>
 
           {/* Content */}
-          <div className="min-h-[70vh] w-full overflow-y-clip">
-            <TabsContent value="about_me" className="w-full text-left">
-              <motion.div
-                initial="hidden"
-                animate="enter"
-                exit="exit"
-                variants={variants}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                <AboutMe aboutMe={aboutMe} />
-              </motion.div>
-            </TabsContent>
-            <TabsContent value="experience" className="w-full">
-              <motion.div
-                initial="hidden"
-                animate="enter"
-                exit="exit"
-                variants={variants}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                <Experience experience={experience} />
-              </motion.div>
-            </TabsContent>
-            <TabsContent value="education" className="w-full">
-              <motion.div
-                initial="hidden"
-                animate="enter"
-                exit="exit"
-                variants={variants}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                <Education education={education} />
-              </motion.div>
-            </TabsContent>
-            <TabsContent value="skills" className="w-full h-full">
-              <motion.div
-                initial="hidden"
-                animate="enter"
-                exit="exit"
-                variants={variants}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                <Skills skills={skills} />
-              </motion.div>
-            </TabsContent>
+          <div className="min-h-[70vh] w-full">
+            <AnimatePresence mode="wait">
+              {activeTab == "about_me" ? (
+                <motion.div
+                  key="about_me"
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={variants}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="w-full text-left"
+                >
+                  <AboutMe aboutMe={aboutMe} />
+                </motion.div>
+              ) : activeTab == "experience" ? (
+                <motion.div
+                  key="experience"
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="w-full"
+                  variants={variants}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <Experience experience={experience} />
+                </motion.div>
+              ) : activeTab == "education" ? (
+                <motion.div
+                  key="education"
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={variants}
+                  className="w-full"
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <Education education={education} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="skills"
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={variants}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="w-full h-full"
+                >
+                  <Skills skills={skills} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </Tabs>
       </div>

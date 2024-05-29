@@ -12,7 +12,7 @@ const myStats: MyStats = [
     text: "Years of experience",
   },
   {
-    number: 7,
+    number: 9,
     text: "Project completed",
   },
   {

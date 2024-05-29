@@ -36,12 +36,18 @@ const MobileNav: React.FC = () => {
       <SheetTrigger className="flex justify-center items-center">
         <AlignRight className="text-[32px] text-accent" />
       </SheetTrigger>
-      <SheetContent className="flex flex-col">
+      <SheetContent className="flex z-[85] flex-col">
         <div className="mt-32 mb-40 text-center text-2xl">
-          <Link href="/">
-            <h1 className="text-4xl font-semibold">
+          <Link href="/" className="flex flex-col gap-3">
+            <h1
+              className="text-4xl font-extrabold"
+              style={{ letterSpacing: 6 }}
+            >
               {" "}
               Dendi<span className="text-accent">{"'"}</span>
+            </h1>
+            <h1 className="text-lg font-semibold">
+              <span className="text-accent">Portfolio Website</span>
             </h1>
           </Link>
         </div>

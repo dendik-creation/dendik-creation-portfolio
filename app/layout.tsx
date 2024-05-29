@@ -15,7 +15,15 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Dendi' Creation",
-  description: "Portfolio",
+  description: "My Portfolio & Personal Website",
+  authors: {
+    name: "Dendi' Setiawan",
+    url: "https://github.com/dendik-creation",
+  },
+  keywords: "Portfolio, Personal Website",
+  creator: "Dendi' Setiawan",
+  publisher: "Vercel",
+  generator: "Next Js",
 };
 
 export default function RootLayout({
@@ -24,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
+    <html lang="en">
       <body className={jetbrainsMono.variable}>
         <Header />
 

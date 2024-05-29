@@ -16,6 +16,7 @@ import Image from "next/image";
 import { ProjectList, SingleProject } from "@/types/TypeWork";
 import { ArrowUpRight, Github, Grid2x2Check, Wrench } from "lucide-react";
 import { Swiper as SwiperType } from "swiper/types";
+import { Autoplay } from "swiper/modules";
 import SliderButton from "@/components/common/Work/SliderButton";
 
 const projects: ProjectList = [
@@ -119,10 +120,19 @@ const variants = {
 
 const Work: React.FC = () => {
   const [project, setProject] = useState<SingleProject>(projects[0]);
+  const [progressTime, setProgressTime] = useState<number>(0);
 
   const handleSlideChange = (swiper: SwiperType) => {
     const currentIndex = swiper.activeIndex;
     setProject(projects[currentIndex]);
+  };
+
+  const handleProgress = (
+    swiper: SwiperType,
+    timeLeft: number,
+    percentage: number
+  ) => {
+    setProgressTime(Math.floor(percentage * 100));
   };
 
   return (
@@ -178,7 +188,16 @@ const Work: React.FC = () => {
                     </ul>
                   </div>
                   {/* Border */}
-                  <div className="border border-white/20"></div>
+                  <div className="border-4 relative border-white/20 rounded-md">
+                    <div
+                      className={`border-4 transition-all w-full absolute border-accent rounded-md -top-[3px] -left-1`}
+                      style={{
+                        width: `${progressTime}%`,
+                        transition: "all ease-in-out 0.2s",
+                      }}
+                    ></div>
+                  </div>
+
                   <div className="flex items-center justify-between">
                     <div className="flex items-start flex-col justify-start gap-4">
                       <ul className="flex gap-3 flex-wrap">
@@ -228,7 +247,18 @@ const Work: React.FC = () => {
           {/* Project Image */}
           <div className="w-full xl:w-[50%] rounded-md">
             <Swiper
+              autoplay={{
+                delay: 10000,
+                pauseOnMouseEnter: true,
+              }}
               spaceBetween={30}
+              effect={"flip"}
+              rewind={true}
+              grabCursor={true}
+              onAutoplayTimeLeft={(swiper, timeLeft, percentage) =>
+                handleProgress(swiper, timeLeft, percentage)
+              }
+              modules={[Autoplay]}
               slidesPerView={1}
               className="xl:h-[520px] mb-12 rounded-md"
               onSlideChange={handleSlideChange}
@@ -240,10 +270,11 @@ const Work: React.FC = () => {
                     <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
                     {/* Image */}
                     <div className="relative w-full h-full rounded-xl">
-                      {item?.image !== "/" ? (
+                      {item?.image ? (
                         <Image
-                          src={"/"}
+                          src={"/assets/work/test-img.png"}
                           fill
+                          sizes="465"
                           className="object-cover outline-none rounded-xl"
                           alt=""
                         />
@@ -257,7 +288,7 @@ const Work: React.FC = () => {
               <SliderButton
                 projectsLength={projects?.length}
                 containerStyles="flex gap-4 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
-                btnStyles="bg-accent mx-3 disabled:opacity-20 rounded-md hover:bg-accent/80 text-primary text-[22px] w-[54px] h-[44px] flex justify-center items-center transition-all"
+                btnStyles="bg-accent/10 mx-3 xl:mx-0 disabled:opacity-20 rounded-md hover:bg-accent/80 hover:text-primary text-accent text-[22px] w-[54px] h-[44px] flex justify-center items-center transition-all"
               />
             </Swiper>
           </div>

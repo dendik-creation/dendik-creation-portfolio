@@ -20,16 +20,18 @@ const SliderButton: React.FC<SliderBtn> = ({
   return (
     <div className={containerStyles}>
       <button
-        disabled={swiper?.activeIndex == 0}
         className={btnStyles}
-        onClick={() => swiper.slidePrev()}
+        onClick={() =>
+          swiper.isBeginning
+            ? swiper.slideTo(projectsLength)
+            : swiper.slidePrev()
+        }
       >
         <ChevronLeft className={iconStyles} />
       </button>
       <button
-        disabled={swiper?.activeIndex == projectsLength - 1}
         className={btnStyles}
-        onClick={() => swiper.slideNext()}
+        onClick={() => (swiper.isEnd ? swiper.slideTo(0) : swiper.slideNext())}
       >
         <ChevronRight className={iconStyles} />
       </button>

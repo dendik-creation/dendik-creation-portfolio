@@ -24,4 +24,17 @@
   .reflect {
     transform: rotateY(180deg);
   }
+  .blink-animate {
+    animation: blink 0.5s infinite ease;
+  }
+  @keyframes blink {
+    0% {
+      /* transform: rotateY(0deg); */
+      color: rgb(0 255 153 / 0.5);
+    }
+    100% {
+      /* transform: rotateY(360deg); */
+      color: transparent;
+    }
+  }
 }

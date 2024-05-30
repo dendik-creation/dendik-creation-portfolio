@@ -69,30 +69,42 @@ const Photo: React.FC = () => {
         </motion.svg> */}
 
         {/* Square Svg */}
-        <motion.svg
-          className="w-[300px] xl:w-[506px] h-[300px] xl:h-[506px]"
-          fill="transparent"
-          viewBox="0 0 506 506"
-          xmlns="http://www.w3.org/2000/svg"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.4,
+              delay: 2.4,
+              ease: "easeInOut",
+            },
+          }}
         >
-          <motion.path
-            d="M 3 3 H 503 V 503 H 3 Z"
-            stroke="#00ff99"
-            strokeWidth={4}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ strokeDasharray: "24 20 0 0" }}
-            animate={{
-              strokeDasharray: ["15 120 25 25", "16 25 92 72", "4 250 22 22"],
-              strokeDashoffset: [0, -100, -400],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        </motion.svg>
+          <motion.svg
+            className="w-[300px] xl:w-[506px] h-[300px] xl:h-[506px]"
+            fill="transparent"
+            viewBox="0 0 506 506"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <motion.path
+              d="M 3 3 H 503 V 503 H 3 Z"
+              stroke="#00ff99"
+              strokeWidth={4}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ strokeDasharray: "24 20 0 0" }}
+              animate={{
+                strokeDasharray: ["15 120 25 25", "16 25 92 72", "4 250 22 22"],
+                strokeDashoffset: [0, -100, -400],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          </motion.svg>
+        </motion.div>
       </motion.div>
     </div>
   );

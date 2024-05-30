@@ -6,3 +6,11 @@ export type ContactInfo = {
   description: string;
   href?: string;
 }[];
+
+export type ContactForm = {
+  yourname: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+};

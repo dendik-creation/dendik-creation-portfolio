@@ -50,38 +50,39 @@ const Services: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-[60px]"
         >
           {myServices?.map((item, index) => (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: {
-                  duration: 0.4,
-                  delay: delayIndex(index) * 0.2,
-                  ease: "easeInOut",
-                },
-              }}
-              className="flex flex-1 relative flex-col min-h-[30vh] justify-center gap-6 group"
-              key={index}
-            >
-              <div className="w-full flex justify-between items-center">
-                <div className="text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500">{`0${
-                  index + 1
-                }`}</div>
-                <Link
-                  href={item.href}
-                  className="w-[70px] h-[70px] rounded-full border-white group-hover:border-opacity-0 border-2 group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45"
-                >
-                  <ArrowDownRight className="text-white group-hover:text-primary text-3xl" />
-                </Link>
-              </div>
-              <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500">
-                {item.title}
-              </h2>
-              <p className="text-white/60">{item.description}</p>
+            <div className="overflow-hidden" key={index}>
+              <motion.div
+                initial={{ y: 500 }}
+                animate={{
+                  y: 0,
+                  transition: {
+                    duration: 0.6,
+                    delay: 1 + delayIndex(index) * 0.075,
+                    ease: "easeInOut",
+                  },
+                }}
+                className="flex flex-1 relative flex-col min-h-[30vh] justify-center gap-6 group"
+              >
+                <div className="w-full flex justify-between items-center">
+                  <div className="text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500">{`0${
+                    index + 1
+                  }`}</div>
+                  <Link
+                    href={item.href}
+                    className="w-[70px] h-[70px] rounded-full border-white group-hover:border-opacity-0 border-2 group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45"
+                  >
+                    <ArrowDownRight className="text-white group-hover:text-primary text-3xl" />
+                  </Link>
+                </div>
+                <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500">
+                  {item.title}
+                </h2>
+                <p className="text-white/60">{item.description}</p>
 
-              {/* border */}
-              <div className="border-b absolute bottom-0 border-solid group-hover:border-dashed group-hover:border-inherit transition-all  border-white/20 w-full"></div>
-            </motion.div>
+                {/* border */}
+                <div className="border-b absolute bottom-0 border-solid group-hover:border-dashed group-hover:border-inherit transition-all  border-white/20 w-full"></div>
+              </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>

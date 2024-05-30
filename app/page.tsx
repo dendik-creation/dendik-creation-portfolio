@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import React from "react";
@@ -5,7 +6,39 @@ import React from "react";
 import Photo from "@/components/common/Home/Photo";
 import Socials from "@/components/common/Home/Socials";
 import Stats from "@/components/common/Home/Stats";
+import { Variants, motion } from "framer-motion";
 
+const myname: {
+  firstname: string;
+  lastname: string;
+} = {
+  firstname: "Dendi'",
+  lastname: "Setiawan",
+};
+
+const firstVariants: Variants = {
+  initial: {
+    y: 280,
+  },
+  animate: {
+    y: 0,
+  },
+  exit: {
+    y: -280,
+  },
+};
+
+const lastVariants: Variants = {
+  initial: {
+    y: -280,
+  },
+  animate: {
+    y: 0,
+  },
+  exit: {
+    y: 280,
+  },
+};
 const Home: React.FC = () => {
   return (
     <section className="h-full">
@@ -13,9 +46,62 @@ const Home: React.FC = () => {
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
           {/* Name */}
           <div className="text-center xl:text-left order-2 xl:order-none">
-            <h1 className="mb-6">
-              <span className="xl:h2 h3">Hello {"I'm,"}</span> <br />{" "}
-              <span className="text-accent h1">{"Dendi'"} Setiawan</span>
+            <h1 className="mb-6 overflow-hidden">
+              <motion.div
+                variants={lastVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{
+                  delay: 2.5,
+                  ease: "circInOut",
+                  duration: 0.5,
+                }}
+                className="xl:h2 overflow-hidden h3"
+              >
+                Hi {"I'm,"}
+              </motion.div>{" "}
+              <br />
+              <div className="text-accent h1 flex xl:justify-start justify-center overflow-hidden h-fit">
+                {myname.firstname?.split("").map((value, index) => {
+                  return (
+                    <motion.div
+                      key={index}
+                      variants={firstVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition={{
+                        delay: 2 + (index + 1) * 0.1,
+                        ease: "circInOut",
+                        duration: 0.5,
+                      }}
+                    >
+                      {value}
+                    </motion.div>
+                  );
+                })}
+              </div>
+              <div
+                className={`text-accent h1 flex xl:justify-start justify-center overflow-hidden h-fit`}
+              >
+                {myname.lastname?.split("").map((value, index) => (
+                  <motion.div
+                    key={index}
+                    variants={lastVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={{
+                      delay: 2.5 + (index + 1) * 0.1,
+                      ease: "circInOut",
+                      duration: 0.5,
+                    }}
+                  >
+                    {value}
+                  </motion.div>
+                ))}
+              </div>
             </h1>
             <p className="max-w-[500px] mb-9 text-white/80">
               I excel at crafting elegant digital experience and I am proficient

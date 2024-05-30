@@ -125,7 +125,22 @@ const variants = {
   },
   exit: {
     // opacity: 0,
-    y: 580,
+    y: -580,
+  },
+};
+
+const numberVariants = {
+  initial: {
+    // opacity: 0,
+    y: 280,
+  },
+  animate: {
+    // opacity: 1,
+    y: 0,
+  },
+  exit: {
+    // opacity: 0,
+    y: 280,
   },
 };
 
@@ -162,102 +177,130 @@ const Work: React.FC = () => {
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row xl:gap-[30px] gap-8">
           {/* Project Data */}
-          <div className="overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={project?.number}
-                variants={variants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{ duration: 0.4, ease: "circInOut" }}
-                className="w-full xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none"
-              >
-                <div className="flex flex-col gap-[30px] h-[50%]">
-                  {/* Outline */}
-                  <div className="text-8xl leading-none font-extrabold text-transparent text-outline hover:text-accent/40 cursor-default transition-all">
-                    {project?.number}
-                  </div>
-                  <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
-                    {project?.title}
-                  </h2>
-                  <p className="text-white/60">{project?.description}</p>
-                  <div className="flex items-start flex-col justify-start gap-4">
-                    <div className="flex gap-2 items-center">
-                      <Wrench className="text-white/80" />
-                      <span className="text-sm text-white/80">Tech Stack</span>
-                    </div>
-                    <ul className="flex gap-3 flex-wrap">
-                      {project?.techStack?.map((item, index) => (
-                        <li
-                          className="text-sm bg-accent/10 p-2 rounded-md text-accent"
-                          key={index}
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  {/* Border */}
-                  <div className="border-4 relative border-white/20 rounded-full">
-                    <div
-                      className={`border-4 transition-all w-full absolute border-accent rounded-full -top-[3.7px] xl:-top-[3px] -left-1`}
-                      style={{
-                        width: `${progressTime}%`,
-                        transition: "all ease-in-out 0.2s",
+          <div className="">
+            <div className="w-full xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
+              <div className="flex flex-col gap-[30px]">
+                {/* Outline */}
+                <div className="overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={project?.number}
+                      variants={numberVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition={{
+                        duration: 0.3,
+                        delay: 0,
+                        ease: "circInOut",
                       }}
-                    ></div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-start flex-col justify-start gap-4">
-                      <ul className="flex gap-3 flex-wrap">
-                        {project?.categories?.map((item, index) => (
-                          <li
-                            className="text-sm bg-blue-200/10 p-2 rounded-md text-blue-200"
-                            key={index}
-                          >
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      {/* Live Preview */}
-                      {project?.preview && (
-                        <a target="_blank" href={project?.preview}>
-                          <TooltipProvider delayDuration={100}>
-                            <Tooltip>
-                              <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                                <ArrowUpRight className="text-white text-3xl group-hover:text-accent" />
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Live Preview</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        </a>
-                      )}
-                      {/* Github Project */}
-                      {project?.github && (
-                        <a target="_blank" href={project?.github}>
-                          <TooltipProvider delayDuration={100}>
-                            <Tooltip>
-                              <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                                <Github className="text-white text-3xl group-hover:text-accent" />
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Github Repository</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                      className={`${
+                        progressTime < 17 && "blink-animate"
+                      } text-8xl leading-none font-extrabold w-fit text-transparent text-outline hover:text-accent/40 cursor-default transition-all`}
+                    >
+                      {project?.number}
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+                <div className="overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={project?.number}
+                      variants={variants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition={{
+                        duration: 0.4,
+                        delay: 0.1,
+                        ease: "circInOut",
+                      }}
+                      className="flex flex-col gap-[30px]"
+                    >
+                      <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
+                        {project?.title}
+                      </h2>
+                      <p className="text-white/60">{project?.description}</p>
+                      <div className="flex items-start flex-col justify-start gap-4">
+                        <div className="flex gap-2 items-center">
+                          <Wrench className="text-white/80" />
+                          <span className="text-sm text-white/80">
+                            Tech Stack
+                          </span>
+                        </div>
+                        <ul className="flex gap-3 flex-wrap">
+                          {project?.techStack?.map((item, index) => (
+                            <li
+                              className="text-sm bg-accent/10 p-2 rounded-md text-accent"
+                              key={index}
+                            >
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      {/* Border */}
+                      <div className="border-4 relative border-white/20 rounded-full">
+                        <div
+                          className={`border-4 transition-all w-full absolute border-accent rounded-full -top-[3.7px] xl:-top-[3px] -left-1`}
+                          style={{
+                            width: `${progressTime}%`,
+                            transition: "all ease-in-out 0.2s",
+                          }}
+                        ></div>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-start flex-col justify-start gap-4">
+                          <ul className="flex gap-3 flex-wrap">
+                            {project?.categories?.map((item, index) => (
+                              <li
+                                className="text-sm bg-blue-200/10 p-2 rounded-md text-blue-200"
+                                key={index}
+                              >
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          {/* Live Preview */}
+                          {project?.preview && (
+                            <a target="_blank" href={project?.preview}>
+                              <TooltipProvider delayDuration={100}>
+                                <Tooltip>
+                                  <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                                    <ArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>Live Preview</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </a>
+                          )}
+                          {/* Github Project */}
+                          {project?.github && (
+                            <a target="_blank" href={project?.github}>
+                              <TooltipProvider delayDuration={100}>
+                                <Tooltip>
+                                  <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                                    <Github className="text-white text-3xl group-hover:text-accent" />
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>Github Repository</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
           </div>
           {/* Project Image */}
           <div className="w-full xl:w-[50%] rounded-md">

@@ -11,7 +11,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import Link from "next/link";
 import Image from "next/image";
 import { ProjectList, SingleProject } from "@/types/TypeWork";
 import { ArrowUpRight, Github, Grid2x2Check, Wrench } from "lucide-react";
@@ -24,82 +23,94 @@ const projects: ProjectList = [
     number: "01",
     title: "Pilih Dhewe",
     description:
-      "Pilih Dhewe adalah layanan voting berbasis aplikasi web dengan menggunakan Rest API",
+      "Pilih Dhewe is a web application-based voting service using Rest API",
     categories: ["Backend", "Frontend", "Restful API"],
     techStack: ["React Js", "Laravel", "Javascript", "PHP", "Tailwind CSS"],
-    image: "/",
+    image: "/assets/work/pilih-dhewe.png",
+    preview: "https://pilihdhewe.my.id",
+    github: "https://dendik-creation/pilihdhewe-apps-laravel",
   },
   {
     number: "02",
     title: "Gudang Ajaib",
     description:
-      "Gudang ajaib merupakan aplikasi inventaris yang digunakan untuk memanajemen barang gudang",
+      "Gudang Ajaib is an inventory application that is used to manage warehouse goods.",
     categories: ["Fullstack"],
     techStack: ["Laravel", "PHP", "Bootstrap"],
-    image: "/",
+    image: "/assets/work/gudang-ajaib.png",
+    preview: "https://gudang.tkjsmkn2kudus.my.id",
   },
   {
     number: "03",
     title: "Sobat Telat",
     description:
-      "Sobat telat adalah aplikasi untuk pencatatan keterlambatan dan izin keluar siswa",
+      "Sobat Telat is an application for recording student tardiness and permission to leave.",
     categories: ["Fullstack"],
     techStack: ["Laravel", "PHP", "Bootstrap"],
-    image: "/",
+    image: "/assets/work/sobat-telat.png",
+    preview: "https://sobattelat.tkjsmkn2kudus.my.id",
   },
   {
     number: "04",
     title: "SDN 2 Mlatinorowito",
     description:
-      "Merupakan website profil sekolah untuk memberikan informasi kepada masyarakat luas",
+      "A school profile website to provide information to the wider community.",
     categories: ["Builder"],
     techStack: ["Wordpress", "PHP"],
-    image: "/",
+    image: "/assets/work/sdn-2.png",
+    preview: "https://sdn2mlatinorowito.netlify.app",
   },
   {
     number: "05",
     title: "Get The Matrix",
     description:
-      "Multimedia pembelajaran interaktif diadaptasi dari materi matrix untuk siswa dan disusun kedalam aplikasi",
+      "Interactive learning multimedia adapted from matrix materials for students and organized into applications",
     categories: ["Builder", "Edu Game"],
     techStack: ["HTML", "CSS", "Javascript"],
-    image: "/",
+    image: "/assets/work/get-the-matrix.png",
+    github: "https://github.com/dendik-creation/get-the-matrix",
+    preview: "https://dendik-creation.github.io/get-the-matrix",
   },
   {
     number: "06",
     title: "Gamelaneka",
     description:
-      "Multimedia pembelajaran interaktif diadaptasi dari beragam macam gamelan dan disusun di aplikasi",
+      "The interactive learning multimedia is adapted from a wide variety of gamelans and compiled in the application",
     categories: ["Builder", "Edu Game"],
     techStack: ["HTML", "CSS", "Javascript"],
-    image: "/",
+    image: "/assets/work/gamelaneka.png",
+    github: "https://github.com/dendik-creation/gamelaneka",
+    preview: "https://dendik-creation.github.io/gamelaneka",
   },
   {
     number: "07",
     title: "Sasana Widya Inventory",
     description:
-      "Sistem inventaris yang digunakan untuk manajemen data buku di perpustakaan",
+      "Inventory system used for book data management in the library",
     categories: ["Fullstack"],
     techStack: ["Laravel", "PHP", "Bootstrap"],
-    image: "/",
+    image: "/assets/work/sasana-inventory.png",
+    preview: "https://sasanainventory.smkn2kudus.sch.id/",
   },
   {
     number: "08",
     title: "Sasana Widya Pustaka",
     description:
-      "Merupakan website profil perpustakaan sekolah untuk memberikan informasi kepada masyarakat luas",
+      "A school library profile website to provide information to the wider community.",
     categories: ["Builder"],
     techStack: ["Wordpress", "PHP"],
-    image: "/",
+    image: "/assets/work/sasana-widya.png",
+    preview: "https://sasanawidyapustaka.smkn2kudus.sch.id/",
   },
   {
     number: "09",
     title: "AMI (Audit Mutu Internal)",
     description:
-      "Digunakan untuk merekap dan melaksanakan seluruh proses audit dalam suatu instansi atau perusahaan",
+      "Used to recap and carry out the entire audit process in an agency or company",
     categories: ["Frontend", "Backend", "Restful API"],
     techStack: ["React Js", "Javascript", "Laravel", "PHP", "Tailwind CSS"],
-    image: "/",
+    image: "/assets/work/ami.png",
+    github: "https://github.com/dendik-creation/ami_be",
   },
 ];
 
@@ -213,31 +224,35 @@ const Work: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-4">
                       {/* Live Preview */}
-                      <Link href="#">
-                        <TooltipProvider delayDuration={100}>
-                          <Tooltip>
-                            <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                              <ArrowUpRight className="text-white text-3xl group-hover:text-accent" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Live Preview</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </Link>
+                      {project?.preview && (
+                        <a target="_blank" href={project?.preview}>
+                          <TooltipProvider delayDuration={100}>
+                            <Tooltip>
+                              <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                                <ArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Live Preview</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </a>
+                      )}
                       {/* Github Project */}
-                      <Link href="#">
-                        <TooltipProvider delayDuration={100}>
-                          <Tooltip>
-                            <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                              <Github className="text-white text-3xl group-hover:text-accent" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Github Repository</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </Link>
+                      {project?.github && (
+                        <a target="_blank" href={project?.github}>
+                          <TooltipProvider delayDuration={100}>
+                            <Tooltip>
+                              <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                                <Github className="text-white text-3xl group-hover:text-accent" />
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Github Repository</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -272,7 +287,7 @@ const Work: React.FC = () => {
                     <div className="relative w-full h-full rounded-xl">
                       {item?.image ? (
                         <Image
-                          src={"/assets/work/test-img.png"}
+                          src={item?.image}
                           fill
                           sizes="465"
                           className="object-cover outline-none rounded-xl"

@@ -164,7 +164,7 @@ const Work: React.FC = () => {
               >
                 <div className="flex flex-col gap-[30px] h-[50%]">
                   {/* Outline */}
-                  <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
+                  <div className="text-8xl leading-none font-extrabold text-transparent text-outline hover:text-accent/40 cursor-default transition-all">
                     {project?.number}
                   </div>
                   <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
@@ -188,9 +188,9 @@ const Work: React.FC = () => {
                     </ul>
                   </div>
                   {/* Border */}
-                  <div className="border-4 relative border-white/20 rounded-md">
+                  <div className="border-4 relative border-white/20 rounded-full">
                     <div
-                      className={`border-4 transition-all w-full absolute border-accent rounded-md -top-[3px] -left-1`}
+                      className={`border-4 transition-all w-full absolute border-accent rounded-full -top-[3.7px] xl:-top-[3px] -left-1`}
                       style={{
                         width: `${progressTime}%`,
                         transition: "all ease-in-out 0.2s",

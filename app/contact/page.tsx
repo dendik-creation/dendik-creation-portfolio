@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -20,6 +20,9 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { SelectValue } from "@radix-ui/react-select";
+import { Send, Unplug } from "lucide-react";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 
 const contactInfo: ContactInfo = [
   {
@@ -56,13 +59,37 @@ const Contact: React.FC = () => {
     subject: "",
     message: "",
   });
-  const handleSendMessage = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [isSubmit, setSubmit] = useState<boolean>(false);
+
+  const submitForm = async () => {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contactForm),
+    });
+    setSubmit(false);
   };
 
-  useEffect(() => {
-    console.log(contactForm);
-  }, [contactForm]);
+  const handleSendMessage = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmit(true);
+    toast.promise(submitForm, {
+      loading: "Sending Message",
+      success: () => {
+        setContactForm({
+          yourname: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+        return `Successfully Send Message`;
+      },
+      error: "Failed Send Message",
+    });
+  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string | any
@@ -88,13 +115,17 @@ const Contact: React.FC = () => {
       className="py-6"
     >
       <div className="container mx-auto">
+        <Toaster theme="light" />
         <div className="flex flex-col xl:flex-row gap-[30px]">
           {/* Form */}
           <div className="xl:w-[54%] order-2 xl:order-none">
             <form
               onSubmit={handleSendMessage}
-              className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl"
+              className="flex flex-col gap-6 p-10 bg-[#27272c] overflow-hidden relative rounded-xl"
             >
+              <div className="absolute -top-6 -right-6 rotate-90">
+                <Unplug className="xl:w-64 xl:h-64 w-40 h-40 text-accent/10" />
+              </div>
               <h3 className="text-4xl font-extrabold text-accent">
                 {"Let's Connect"}
               </h3>
@@ -106,6 +137,8 @@ const Contact: React.FC = () => {
               {/* Input */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Input
+                  required
+                  autoComplete="off"
                   name="yourname"
                   type="text"
                   onChange={handleChange}
@@ -113,6 +146,8 @@ const Contact: React.FC = () => {
                   placeholder="Your Name"
                 />
                 <Input
+                  required
+                  autoComplete="off"
                   name="email"
                   type="email"
                   onChange={handleChange}
@@ -120,6 +155,8 @@ const Contact: React.FC = () => {
                   placeholder="Email Address"
                 />
                 <Input
+                  required
+                  autoComplete="off"
                   name="phone"
                   type="phone"
                   onChange={handleChange}
@@ -128,6 +165,7 @@ const Contact: React.FC = () => {
                 />
                 {/* Select */}
                 <Select
+                  required
                   name="subject"
                   onValueChange={handleChange}
                   value={contactForm?.subject}
@@ -150,6 +188,7 @@ const Contact: React.FC = () => {
                 </Select>
               </div>
               <Textarea
+                required
                 name="message"
                 onChange={handleChange}
                 value={contactForm?.message}
@@ -157,8 +196,15 @@ const Contact: React.FC = () => {
                 placeholder="Your Message"
               />
               {/* Button Send */}
-              <Button size={"md"} className="">
-                Send Message
+              <Button
+                disabled={isSubmit}
+                size={"md"}
+                className="flex gap-2 items-center"
+              >
+                <div className="">
+                  <Send />
+                </div>
+                <div className="">Send Message</div>
               </Button>
             </form>
           </div>

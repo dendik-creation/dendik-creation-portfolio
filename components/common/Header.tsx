@@ -6,7 +6,7 @@ import MobileNav from "./MobileNav";
 
 const Header: React.FC = () => {
   return (
-    <header className="py-8 xl:py-12 sticky top-0 z-20 xl:backdrop-blur-none backdrop-blur-lg text-white">
+    <header className="py-8 xl:py-12 sticky top-0 z-20 backdrop-blur-lg text-white">
       <div className="container mx-auto flex justify-between items-center">
         {/* logo */}
         <Link href="/">

@@ -116,30 +116,24 @@ const projects: ProjectList = [
 
 const variants = {
   initial: {
-    // opacity: 0,
     y: -580,
   },
   animate: {
-    // opacity: 1,
     y: 0,
   },
   exit: {
-    // opacity: 0,
     y: -580,
   },
 };
 
 const numberVariants = {
   initial: {
-    // opacity: 0,
     y: 280,
   },
   animate: {
-    // opacity: 1,
     y: 0,
   },
   exit: {
-    // opacity: 0,
     y: 280,
   },
 };
@@ -158,7 +152,7 @@ const Work: React.FC = () => {
     timeLeft: number,
     percentage: number
   ) => {
-    setProgressTime(Math.floor(percentage * 100));
+    setProgressTime(100 - Math.floor(percentage * 100));
   };
 
   return (
@@ -190,12 +184,11 @@ const Work: React.FC = () => {
                       animate="animate"
                       exit="exit"
                       transition={{
-                        duration: 0.3,
-                        delay: 0,
+                        duration: 0.2,
                         ease: "circInOut",
                       }}
                       className={`${
-                        progressTime < 17 && "blink-animate"
+                        progressTime > 83 && "blink-animate"
                       } text-8xl leading-none font-extrabold w-fit text-transparent text-outline hover:text-accent/40 cursor-default transition-all`}
                     >
                       {project?.number}
@@ -212,7 +205,6 @@ const Work: React.FC = () => {
                       exit="exit"
                       transition={{
                         duration: 0.4,
-                        delay: 0.1,
                         ease: "circInOut",
                       }}
                       className="flex flex-col gap-[30px]"

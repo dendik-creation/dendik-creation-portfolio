@@ -109,11 +109,6 @@ const education: EducationMe = {
       duration: "2021 - 2024",
     },
     {
-      institution: "Telkom DigiUp",
-      degree: "Junior Web Programmer",
-      duration: "Okt 2023 - Nov 2023",
-    },
-    {
       institution: "Telkom DigiUp Indonesia",
       degree: "Junior Web Programmer",
       duration: "Okt 2023 - Nov 2023",

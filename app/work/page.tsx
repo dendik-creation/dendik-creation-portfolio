@@ -13,10 +13,13 @@ import {
 } from "@/components/ui/tooltip";
 import Image from "next/image";
 import { ProjectList, SingleProject } from "@/types/TypeWork";
-import { ArrowUpRight, Github, Grid2x2Check, Wrench } from "lucide-react";
-import { Swiper as SwiperType } from "swiper/types";
-import { Autoplay } from "swiper/modules";
+import { ArrowUpRight, Github, Wrench } from "lucide-react";
 import SliderButton from "@/components/common/Work/SliderButton";
+import { Progress } from "@/components/ui/progress";
+import { Swiper as SwiperType } from "swiper/types";
+import { Autoplay, EffectCards, EffectFlip } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-flip";
 
 const projects: ProjectList = [
   {
@@ -141,6 +144,7 @@ const numberVariants = {
 const Work: React.FC = () => {
   const [project, setProject] = useState<SingleProject>(projects[0]);
   const [progressTime, setProgressTime] = useState<number>(0);
+  const [timeLeft, setTimeLeft] = useState<string>("");
 
   const handleSlideChange = (swiper: SwiperType) => {
     const currentIndex = swiper.activeIndex;
@@ -152,6 +156,7 @@ const Work: React.FC = () => {
     timeLeft: number,
     percentage: number
   ) => {
+    setTimeLeft((timeLeft / 1000).toFixed(1));
     setProgressTime(100 - Math.floor(percentage * 100));
   };
 
@@ -231,16 +236,36 @@ const Work: React.FC = () => {
                           ))}
                         </ul>
                       </div>
-                      {/* Border */}
-                      <div className="border-4 relative border-white/20 rounded-full">
-                        <div
-                          className={`border-4 transition-all w-full absolute border-accent rounded-full -top-[3.7px] xl:-top-[3px] -left-1`}
-                          style={{
-                            width: `${progressTime}%`,
-                            transition: "all ease-in-out 0.2s",
-                          }}
-                        ></div>
-                      </div>
+                      {/* Progress */}
+                      <TooltipProvider delayDuration={100}>
+                        <Tooltip>
+                          <TooltipTrigger className="cursor-default">
+                            <div className="">
+                              <Progress
+                                value={progressTime}
+                                className="w-full"
+                              ></Progress>
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent
+                            className="relative hidden xl:block"
+                            side="bottom"
+                          >
+                            <div className="absolute -bottom-8 -left-[267px] w-full transition-all">
+                              <div
+                                style={{
+                                  transform: `translateX(${
+                                    progressTime * 4.7
+                                  }px)`,
+                                }}
+                                className="bg-primary w-20 transition-all text-center px-3 py-1.5 rounded-md text-accent shadow-2xl shadow-accent/40"
+                              >
+                                {timeLeft} s
+                              </div>
+                            </div>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-start flex-col justify-start gap-4">
@@ -308,7 +333,7 @@ const Work: React.FC = () => {
               onAutoplayTimeLeft={(swiper, timeLeft, percentage) =>
                 handleProgress(swiper, timeLeft, percentage)
               }
-              modules={[Autoplay]}
+              modules={[Autoplay, EffectFlip]}
               slidesPerView={1}
               className="xl:h-[520px] mb-12 rounded-md"
               onSlideChange={handleSlideChange}
@@ -338,7 +363,7 @@ const Work: React.FC = () => {
               <SliderButton
                 projectsLength={projects?.length}
                 containerStyles="flex gap-4 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
-                btnStyles="bg-accent/10 mx-3 xl:mx-0 disabled:opacity-20 rounded-md hover:bg-accent/80 hover:text-primary text-accent text-[22px] w-[54px] h-[44px] flex justify-center items-center transition-all"
+                btnStyles="xl:bg-accent/10 bg-primary mx-3 xl:mx-0 disabled:opacity-20 rounded-md xl:hover:bg-accent/80 xl:hover:text-primary text-accent text-[22px] w-[54px] h-[44px] flex justify-center items-center transition-all"
               />
             </Swiper>
           </div>

@@ -1,15 +1,15 @@
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React from "react";
 
 const stairAnimate = {
   initial: {
-    top: "0%",
+    bottom: "0%",
   },
   animate: {
-    top: "100%",
+    bottom: "100%",
   },
   exit: {
-    top: ["100%", "0%"],
+    bottom: ["100%", "0%"],
   },
 };
 
@@ -34,7 +34,7 @@ const Stairs = () => {
               ease: "easeInOut",
               delay: reverseIndex(index) * 0.1,
             }}
-            className="h-full w-full bg-stone-400 relative"
+            className={`h-full w-full relative bg-accent`}
           />
         );
       })}

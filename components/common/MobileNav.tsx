@@ -2,9 +2,17 @@
 import { Links } from "@/types/TypeHeader";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { AlignRight } from "lucide-react";
 import Link from "next/link";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 const links: Links = [
   {
@@ -32,40 +40,47 @@ const links: Links = [
 const MobileNav: React.FC = () => {
   const pathname = usePathname();
   return (
-    <Sheet>
-      <SheetTrigger className="flex justify-center items-center">
+    <Drawer>
+      <DrawerTrigger asChild>
         <AlignRight className="text-[32px] text-accent" />
-      </SheetTrigger>
-      <SheetContent className="flex z-[85] flex-col">
-        <div className="mt-32 mb-40 text-center text-2xl">
-          <Link href="/" className="flex flex-col gap-3">
-            <h1
-              className="text-4xl font-extrabold"
-              style={{ letterSpacing: 6 }}
-            >
-              {" "}
-              Dendi<span className="text-accent">{"'"}</span>
-            </h1>
-            <h1 className="text-lg font-semibold">
-              <span className="text-accent">Portfolio Website</span>
-            </h1>
-          </Link>
-        </div>
-        <nav className="flex flex-col justify-center items-center gap-8">
-          {links?.map((link, index) => (
-            <Link
-              href={link.path}
-              key={index}
-              className={`text-xl capitalize hover:text-accent transition-all ${
-                link.path == pathname && "text-accent border-b-2 border-accent"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
-      </SheetContent>
-    </Sheet>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>
+            <div className="mt-12 mb-12 text-center text-2xl">
+              <Link href="/" className="flex flex-col gap-3">
+                <h1
+                  className="text-4xl font-extrabold"
+                  style={{ letterSpacing: 6 }}
+                >
+                  Dendi<span className="text-accent">{"'"}</span>
+                </h1>
+                <h1 className="text-lg font-semibold">
+                  <span className="text-accent">Portfolio Website</span>
+                </h1>
+              </Link>
+            </div>
+          </DrawerTitle>
+          <DrawerDescription>
+            <nav className="flex mb-12 flex-col justify-center items-center gap-8">
+              {links?.map((link, index) => (
+                <Link
+                  href={link.path}
+                  key={index}
+                  className={`text-xl capitalize hover:text-accent transition-all ${
+                    link.path == pathname
+                      ? "text-accent border-b-2 border-accent"
+                      : "text-white/60"
+                  }`}
+                >
+                  <DrawerClose>{link.name}</DrawerClose>
+                </Link>
+              ))}
+            </nav>
+          </DrawerDescription>
+        </DrawerHeader>
+      </DrawerContent>
+    </Drawer>
   );
 };
 

@@ -23,7 +23,7 @@ const myStats: MyStats = [
 
 const Stats: React.FC = () => {
   return (
-    <section className="pt-4 pb-12 xl:pt-0 xl:pb-0">
+    <section className="pt-4 pb-12 xl:pt-0 z-0 xl:pb-0">
       <div className="container mx-auto mb-12">
         <motion.div
           initial={{ opacity: 0 }}
@@ -53,7 +53,7 @@ const Stats: React.FC = () => {
                 end={item.number}
                 duration={4}
                 delay={2}
-                className="text-6xl xl:text-8xl font-extrabold z-20"
+                className="text-6xl xl:text-8xl font-extrabold z-10"
               />
               <p
                 className={`${

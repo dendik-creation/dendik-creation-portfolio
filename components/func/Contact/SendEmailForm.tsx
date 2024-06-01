@@ -1,6 +1,5 @@
 "use server";
 import { ContactForm } from "@/types/TypeContact";
-import React from "react";
 import nodemailer from "nodemailer";
 import { googleUserApp, targetEmail } from "@/lib/constant";
 
@@ -12,15 +11,19 @@ const transporter = nodemailer.createTransport({
   auth: googleUserApp,
 });
 
+const htmlEmail = (form: ContactForm): string => {
+  return ` 
+      <div style="font-size : 400px;" className="text-accent text-9xl">${form.email}</div>
+  `;
+};
+
 const SendEmailForm = async (form: ContactForm) => {
   try {
     const response = await transporter.sendMail({
-      from: {
-        name: form?.yourname,
-        address: form?.email,
-      },
+      from: "Contact Portfolio Submission",
       to: targetEmail,
-      subject: form?.subject,
+      subject: `Portfolio Subject Submission => ${form?.subject}`,
+      html: htmlEmail(form),
     });
     console.log("success", response?.messageId);
     return true;

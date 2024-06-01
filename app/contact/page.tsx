@@ -68,15 +68,17 @@ const Contact: React.FC = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(contactForm),
+    }).finally(() => {
+      setSubmit(false);
     });
-    setSubmit(false);
   };
 
-  const handleSendMessage = (e: FormEvent<HTMLFormElement>) => {
+  const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmit(true);
     toast.promise(submitForm, {
       loading: "Sending Message",
+      error: "Failed Send Message",
       success: () => {
         setContactForm({
           yourname: "",
@@ -87,7 +89,6 @@ const Contact: React.FC = () => {
         });
         return `Successfully Send Message`;
       },
-      error: "Failed Send Message",
     });
   };
 

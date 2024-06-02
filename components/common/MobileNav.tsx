@@ -44,7 +44,7 @@ const MobileNav: React.FC = () => {
       <DrawerTrigger asChild>
         <AlignRight className="text-[32px] text-accent" />
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="outline-none border-0">
         <DrawerHeader>
           <DrawerTitle>
             <div className="mt-12 mb-12 text-center text-2xl">
@@ -70,7 +70,7 @@ const MobileNav: React.FC = () => {
                   className={`text-xl capitalize hover:text-accent transition-all ${
                     link.path == pathname
                       ? "text-accent border-b-2 border-accent"
-                      : "text-white/60"
+                      : "text-white/80"
                   }`}
                 >
                   <DrawerClose>{link.name}</DrawerClose>

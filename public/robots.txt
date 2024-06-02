@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dendikcreation.my.id
+
+# Sitemaps
+Sitemap: https://dendikcreation.my.id/sitemap.xml

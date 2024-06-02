@@ -33,6 +33,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="k8c1urPW2-SpBEy5I7SSQ9jzIuFiIc0xJNJpLPAZYTs"
+        />
+      </head>
       <body className={jetbrainsMono.variable}>
         <Header />
 

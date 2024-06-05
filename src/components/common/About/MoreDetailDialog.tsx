@@ -12,7 +12,6 @@ import {
 import {
   ArrowUpRight,
   Building,
-  ChevronUp,
   GitCommitHorizontal,
   Hourglass,
 } from "lucide-react";

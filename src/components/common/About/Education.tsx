@@ -2,6 +2,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { EducationMe } from "@/types/TypeAbout";
 import React from "react";
 import MoreDetailDrawer from "./MoreDetailDrawer";
+import MoreDetailDialog from "./MoreDetailDialog";
 
 type EducationTab = {
   education: EducationMe;
@@ -23,9 +24,13 @@ const Education: React.FC<EducationTab> = ({ education, isMobile }) => {
           {education?.items?.map((item, index) => (
             <li
               key={index}
-              className="bg-[#232329] h-[184px] py-6 relative px-10 rounded-xl flex flex-col justify-start items-start gap-1 lg:items-start"
+              className="bg-[#232329] h-[184px] py-6 relative overflow-hidden px-10 rounded-xl flex flex-col justify-start items-start gap-1 lg:items-start"
             >
-              {isMobile ? <MoreDetailDrawer education={item} /> : ""}
+              {isMobile ? (
+                <MoreDetailDrawer education={item} delay={index} />
+              ) : (
+                <MoreDetailDialog education={item} delay={index} />
+              )}
 
               <span className="text-accent">{item?.duration}</span>
               <span className="text-xl max-w-[260px] min-h-[60px] text-left">

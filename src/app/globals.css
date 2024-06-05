@@ -6,6 +6,16 @@
   body {
     @apply font-primary bg-primary text-white leading-loose;
   }
+  body::-webkit-scrollbar {
+    @apply w-4;
+  }
+  body::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  body::-webkit-scrollbar-thumb {
+    @apply bg-accent rounded-sm;
+  }
+
   .h1 {
     @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
   }

@@ -3,6 +3,7 @@ import { ExperienceMe } from "@/types/TypeAbout";
 import React from "react";
 import { Building } from "lucide-react";
 import MoreDetailDrawer from "./MoreDetailDrawer";
+import MoreDetailDialog from "./MoreDetailDialog";
 
 type ExperienceTab = {
   experience: ExperienceMe;
@@ -26,7 +27,11 @@ const Experience: React.FC<ExperienceTab> = ({ experience, isMobile }) => {
               key={index}
               className="bg-[#232329] h-[184px] relative py-6 px-10 rounded-xl flex overflow-hidden flex-col justify-center gap-1 items-start"
             >
-              {isMobile ? <MoreDetailDrawer experience={item} /> : ""}
+              {isMobile ? (
+                <MoreDetailDrawer experience={item} delay={index} />
+              ) : (
+                <MoreDetailDialog experience={item} delay={index} />
+              )}
               <span className="text-accent">{item?.duration}</span>
               <span className="text-xl max-w-[260px] min-h-[60px] text-left">
                 {item?.position}

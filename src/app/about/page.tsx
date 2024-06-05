@@ -6,7 +6,7 @@ import {
   ExperienceMe,
   SkillMe,
 } from "@/types/TypeAbout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   FaBootstrap,
@@ -79,21 +79,43 @@ const experience: ExperienceMe = {
       company: "PT Pura Rotogravure",
       position: "IT Development Internship",
       duration: "Feb 2024 - May 2024",
+      activities: [
+        "Learn Desktop Development using Power Builder",
+        "Produce employee data management system and student management in desktop",
+        "AMI System is a web-based application generated for auditing a company",
+      ],
     },
     {
       company: "Vocational School",
       position: "Freelance Web Developer",
       duration: "2023 - May 2024",
+      activities: [
+        "Working part-time for school app development",
+        "Produced more than 4 web application-based systems",
+        "Gudang Ajaib, Sobat Telat, Sasana Inventory, Sasana Widya are applications that are already running",
+      ],
     },
     {
       company: "PT Humanika Mitra Solusi",
       position: "Fieldwork Practices",
       duration: "Jun 2023 - Aug 2023",
+      activities: [
+        "Work as a fullstack website developer in a team",
+        "Start learning React Js fundamentally",
+        "Creating RestFull API from laravel",
+        "Pilih Dhewe is a voting and polling application based on Laravel, React Js , and Flutter (Mobile)",
+      ],
     },
     {
       company: "Vocational School",
       position: "Game Web Developer",
       duration: "Sep 2022 - Des 2022",
+      activities: [
+        "Work as a game developer in a team",
+        "Produce interactive learning media that can be accessed on various platforms",
+        "Get The Matrix is ​​the first result with a mathematical matrix theme",
+        "Gamelaneka is the second product adapted from various types of Javanese gamelan",
+      ],
     },
   ],
 };
@@ -107,21 +129,40 @@ const education: EducationMe = {
       institution: "SMK Negeri 2 Kudus",
       degree: "Student",
       duration: "2021 - 2024",
+      activities: [
+        "Learning from all aspects of life to get to the community environment",
+        "Participate in competitions and exhibitions especially in the field of web technology and applications",
+      ],
     },
     {
       institution: "Telkom DigiUp Indonesia",
       degree: "Junior Web Programmer",
       duration: "Okt 2023 - Nov 2023",
+      activities: [
+        "Learning Python fundamentals",
+        "Learning Django as a python framewrok",
+        "Create CRUD from Django application and SQlite database",
+      ],
     },
     {
       institution: "Dicoding Indonesia",
       degree: "Basic Algorithm Programming",
       duration: "Jul 2023 - Aug 2023",
+      activities: [
+        "Learn the fundamentals of algorithms",
+        "Learn programming for business standards",
+        "Completed the final exam with an above-average score",
+      ],
     },
     {
       institution: "AWS Training",
       degree: "AWS Cloud Practitioner",
       duration: "Jun 2023",
+      activities: [
+        "Get to know and learn about AWS services ",
+        "AWS Console service trial",
+        "Create a simple CRUD architecture using S3, RDS, EC2, VPC",
+      ],
     },
   ],
 };
@@ -191,6 +232,20 @@ const variants = {
 
 const About: React.FC = () => {
   const [activeTab, setTab] = useState<string>("about_me");
+  const [isMobile, setMobile] = useState<boolean>(false);
+  useEffect(() => {
+    const updateScreenWidth = () => {
+      if (window.innerWidth < 970) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
+    window.addEventListener("resize", updateScreenWidth);
+    return () => {
+      window.removeEventListener("resize", updateScreenWidth);
+    };
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -274,7 +329,7 @@ const About: React.FC = () => {
                   variants={variants}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <Experience experience={experience} />
+                  <Experience experience={experience} isMobile={isMobile} />
                 </motion.div>
               ) : activeTab == "education" ? (
                 <motion.div
@@ -286,7 +341,7 @@ const About: React.FC = () => {
                   className="w-full"
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <Education education={education} />
+                  <Education education={education} isMobile={isMobile} />
                 </motion.div>
               ) : (
                 <motion.div

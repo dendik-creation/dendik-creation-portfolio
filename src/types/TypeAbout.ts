@@ -10,26 +10,32 @@ export type AboutMeType = {
   }[];
 };
 
+export type ExperienceList = {
+  company: string;
+  position: string;
+  duration: string;
+  activities?: string[];
+};
+
 export type ExperienceMe = {
   icon?: React.ReactNode;
   title: string;
   description: string;
-  items: {
-    company: string;
-    position: string;
-    duration: string;
-  }[];
+  items: ExperienceList[];
+};
+
+export type EducationList = {
+  institution: string;
+  degree: string;
+  duration: string;
+  activities?: string[];
 };
 
 export type EducationMe = {
   icon?: React.ReactNode;
   title: string;
   description: string;
-  items: {
-    institution: string;
-    degree: string;
-    duration: string;
-  }[];
+  items: EducationList[];
 };
 
 export type SkillMe = {

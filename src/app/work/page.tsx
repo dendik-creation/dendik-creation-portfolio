@@ -17,9 +17,9 @@ import { ArrowUpRight, Github, Wrench } from "lucide-react";
 import SliderButton from "@/components/common/Work/SliderButton";
 import { Progress } from "@/components/ui/progress";
 import { Swiper as SwiperType } from "swiper/types";
-import { Autoplay, EffectCards, EffectFlip } from "swiper/modules";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-flip";
+import "swiper/css/effect-coverflow";
 
 const projects: ProjectList = [
   {
@@ -113,7 +113,7 @@ const projects: ProjectList = [
     categories: ["Frontend", "Backend", "Restful API"],
     techStack: ["React Js", "Javascript", "Laravel", "PHP", "Tailwind CSS"],
     image: "/assets/work/ami.png",
-    github: "https://github.com/dendik-creation/ami_be",
+    github: "https://github.com/dendik-creation/react_ami_be",
   },
 ];
 
@@ -176,7 +176,7 @@ const Work: React.FC = () => {
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row xl:gap-[30px] gap-8">
           {/* Project Data */}
-          <div className="">
+          <div className="xl:order-1 order-2">
             <div className="w-full xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
               <div className="flex flex-col gap-[30px]">
                 {/* Outline */}
@@ -320,20 +320,20 @@ const Work: React.FC = () => {
             </div>
           </div>
           {/* Project Image */}
-          <div className="w-full xl:w-[50%] rounded-md">
+          <div className="w-full xl:w-[50%] xl:order-2 order-1 rounded-md">
             <Swiper
               autoplay={{
                 delay: 10000,
                 pauseOnMouseEnter: true,
               }}
               spaceBetween={30}
-              effect={"flip"}
+              effect={"coverflow"}
               rewind={true}
               grabCursor={true}
               onAutoplayTimeLeft={(swiper, timeLeft, percentage) =>
                 handleProgress(swiper, timeLeft, percentage)
               }
-              modules={[Autoplay, EffectFlip]}
+              modules={[Autoplay, EffectCoverflow]}
               slidesPerView={1}
               className="xl:h-[520px] mb-12 rounded-md"
               onSlideChange={handleSlideChange}

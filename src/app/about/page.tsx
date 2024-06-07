@@ -235,7 +235,7 @@ const About: React.FC = () => {
   const [isMobile, setMobile] = useState<boolean>(false);
   useEffect(() => {
     const updateScreenWidth = () => {
-      if (window.innerWidth < 970) {
+      if (window.innerWidth < 1024) {
         setMobile(true);
       } else {
         setMobile(false);
@@ -245,7 +245,7 @@ const About: React.FC = () => {
     return () => {
       window.removeEventListener("resize", updateScreenWidth);
     };
-  }, []);
+  }, [activeTab, isMobile]);
   return (
     <motion.div
       initial={{ opacity: 0 }}

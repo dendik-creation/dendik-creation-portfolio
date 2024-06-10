@@ -40,7 +40,7 @@ const MoreDetailDrawer: React.FC<DetailData> = ({
         className="absolute top-0 right-4 w-12 h-12 flex justify-center cursor-pointer items-center rounded-b-full group bg-accent"
       >
         <DrawerTrigger>
-          <ChevronUp className=" text-primary group-hover:reflect transition-all duration-500" />
+          <ChevronUp className=" text-primary group-hover:reflect-x transition-all duration-500" />
         </DrawerTrigger>
       </motion.div>
       <DrawerContent className="outline-none border-0 min-h-[400px]">

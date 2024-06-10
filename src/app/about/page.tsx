@@ -26,7 +26,13 @@ import Experience from "@/components/common/About/Experience";
 import Education from "@/components/common/About/Education";
 import Skills from "@/components/common/About/Skills";
 import AboutMe from "@/components/common/About/AboutMe";
-import { BarChart2, GraduationCap, UserSearch, Wrench } from "lucide-react";
+import {
+  BarChart2,
+  GraduationCap,
+  Network,
+  UserSearch,
+  Wrench,
+} from "lucide-react";
 
 const aboutMe: AboutMeType = {
   icon: <UserSearch />,
@@ -70,7 +76,7 @@ const aboutMe: AboutMeType = {
 };
 
 const experience: ExperienceMe = {
-  icon: <BarChart2 />,
+  icon: <Network />,
   title: "My Experience",
   description:
     "Learning and applying it in the world of work is the real experience.",
@@ -245,7 +251,7 @@ const About: React.FC = () => {
     return () => {
       window.removeEventListener("resize", updateScreenWidth);
     };
-  }, [activeTab, isMobile]);
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -279,8 +285,8 @@ const About: React.FC = () => {
               className="relative overflow-hidden"
               value="experience"
             >
-              <div className="flex absolute -bottom-3 xl:-bottom-8 left-2 opacity-30">
-                <BarChart2 className="xl:w-44 xl:h-44 w-16 h-16" />
+              <div className="flex absolute -bottom-5 xl:-bottom-12 left-0 opacity-30">
+                <Network className="xl:w-44 xl:h-44 w-16 h-16" />
               </div>
               <span className="static xl:absolute left-0 w-full text-center xl:top-8 xl:text-2xl text-balance">
                 Experience

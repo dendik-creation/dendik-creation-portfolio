@@ -34,6 +34,9 @@
   .reflect {
     transform: rotateY(180deg);
   }
+  .reflect-x {
+    transform: rotateX(180deg);
+  }
   .blink-animate {
     animation: blink 0.5s infinite ease;
   }

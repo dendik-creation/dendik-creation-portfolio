@@ -3,6 +3,7 @@ import { EducationMe } from "@/types/TypeAbout";
 import React from "react";
 import MoreDetailDrawer from "./MoreDetailDrawer";
 import MoreDetailDialog from "./MoreDetailDialog";
+import { GraduationCap } from "lucide-react";
 
 type EducationTab = {
   education: EducationMe;
@@ -38,7 +39,7 @@ const Education: React.FC<EducationTab> = ({ education, isMobile }) => {
               </span>
               <div className="flex items-center gap-3">
                 {/* dot */}
-                <div className="w-[6px] h-[6px] rounded-full bg-accent"></div>
+                <GraduationCap className="text-accent" />
                 <p className="text-white/60">{item?.institution}</p>
               </div>
             </li>

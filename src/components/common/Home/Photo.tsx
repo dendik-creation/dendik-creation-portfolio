@@ -35,6 +35,7 @@ const Photo: React.FC = () => {
             priority
             quality={100}
             fill
+            sizes="200"
             alt=""
             className="object-contain pt-2 pl-2"
           />

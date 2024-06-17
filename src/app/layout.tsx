@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/common/Header";
 import PageTransition from "@/components/transition/PageTransition";
 import StairTransition from "@/components/transition/StairTransition";
+import { umamiAnalytics } from "@/lib/constant";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -38,6 +39,11 @@ export default function RootLayout({
           name="google-site-verification"
           content="k8c1urPW2-SpBEy5I7SSQ9jzIuFiIc0xJNJpLPAZYTs"
         />
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={umamiAnalytics.dataWebsiteId}
+        ></script>
       </head>
       <body className={jetbrainsMono.variable}>
         <Header />

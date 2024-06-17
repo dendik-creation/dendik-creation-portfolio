@@ -13,6 +13,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { UmamiBtnMobile } from "./UmamiBtn";
 
 const links: Links = [
   {
@@ -76,6 +77,7 @@ const MobileNav: React.FC = () => {
                   <DrawerClose>{link.name}</DrawerClose>
                 </Link>
               ))}
+              <UmamiBtnMobile />
             </nav>
           </DrawerDescription>
         </DrawerHeader>

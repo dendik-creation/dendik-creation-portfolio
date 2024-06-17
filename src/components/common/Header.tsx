@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { Button } from "../ui/button";
 import Nav from "./Nav";
 import MobileNav from "./MobileNav";
+import { UmamiBtnDesktop } from "./UmamiBtn";
 
 const Header: React.FC = () => {
   return (
@@ -16,11 +16,9 @@ const Header: React.FC = () => {
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden xl:flex items-center gap-8">
+        <div className="hidden xl:flex items-center gap-12">
           <Nav />
-          <Link href={"/contact"}>
-            <Button>Hire Me</Button>
-          </Link>
+          <UmamiBtnDesktop />
         </div>
 
         {/* Mobile Nav */}

@@ -2,6 +2,7 @@
 import { ContactForm } from "@/types/TypeContact";
 import nodemailer from "nodemailer";
 import { googleUserApp, targetEmail } from "@/lib/constant";
+import { selfEmail, thanksEmail } from "./EmailTemplate";
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -11,21 +12,26 @@ const transporter = nodemailer.createTransport({
   auth: googleUserApp,
 });
 
-const htmlEmail = (form: ContactForm): string => {
-  return ` 
-      <div style="font-size : 400px;" className="text-accent text-9xl">${form.email}</div>
-  `;
-};
-
 const SendEmailForm = async (form: ContactForm) => {
   try {
-    const response = await transporter.sendMail({
-      from: "Contact Portfolio Submission",
-      to: targetEmail,
-      subject: `Portfolio Subject Submission => ${form?.subject}`,
-      html: htmlEmail(form),
+    const selfResponse = await transporter.sendMail({
+      from: {
+        name: "Dendi' Setiawan",
+        address: googleUserApp.user,
+      },
+      to: form.email,
+      subject: `${form?.subject}`,
+      html: selfEmail(form, new Date().toString()),
     });
-    console.log("success", response?.messageId);
+    const submitterResponse = await transporter.sendMail({
+      from: {
+        name: "Kontak Portfolio",
+        address: googleUserApp.user,
+      },
+      to: targetEmail,
+      subject: `${form?.subject}`,
+      html: thanksEmail(form, new Date().toString()),
+    });
     return true;
   } catch (error) {
     console.log("fail", error);

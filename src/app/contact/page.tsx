@@ -122,15 +122,27 @@ const Contact: React.FC = () => {
     });
   };
 
+  const allowedPhoneNumber = (val: string, prev: ContactForm): string => {
+    const numRegex = /^\d{0,15}$/;
+    return numRegex.test(val) ? val : prev.phone;
+  };
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string | any
   ) => {
-    setContactForm((prev) => ({
-      ...prev,
-      [e?.target ? e?.target?.name : "subject"]: e?.target
-        ? e?.target?.value
-        : e,
-    }));
+    if (e?.target.name == "phone") {
+      setContactForm((prev) => ({
+        ...prev,
+        phone: allowedPhoneNumber(e?.target.value, prev),
+      }));
+    } else {
+      setContactForm((prev) => ({
+        ...prev,
+        [e?.target ? e?.target?.name : "subject"]: e?.target
+          ? e?.target?.value
+          : e,
+      }));
+    }
   };
   return (
     <motion.section
@@ -252,9 +264,16 @@ const Contact: React.FC = () => {
           </motion.div>
           {/* Info */}
           <div className="flex-1 flex items-center xl:items-start xl:item order-1 xl:order-none mb-8 xl:mb-0">
-            <ul className="flex flex-col gap-10 xl:flex-row xl:flex-wrap">
+            <ul className="grid grid-cols-2 xl:grid-cols-5 gap-6 w-full">
               {contactInfo?.map((item, index) => (
-                <li key={index} className="group overflow-hidden">
+                <li
+                  key={index}
+                  className={`group w-full xl:w-fit overflow-hidden ${
+                    (index + 1) % 2 == 1 && index === contactInfo.length - 1
+                      ? "col-span-2"
+                      : ""
+                  } xl:col-span-1`}
+                >
                   <motion.div
                     initial={{ y: 100 }}
                     animate={{
@@ -269,27 +288,25 @@ const Contact: React.FC = () => {
                     <a
                       target="_blank"
                       href={item?.href}
-                      className="flex items-center gap-6"
+                      className="flex items-center w-full xl:w-fit gap-6"
                     >
                       <TooltipProvider delayDuration={100}>
                         <Tooltip>
-                          <TooltipTrigger>
-                            <div className="w-[52px] h-[52px] relative xl:w-[72px] xl:h-[72px] bg-[#27272c] text-accent rounded-md flex items-center justify-center">
+                          <TooltipTrigger className="w-full xl:w-fit bg-[#27272c] relative rounded-md">
+                            <div className="w-max gap-4 p-3 xl:p-0 h-[52px] xl:w-[72px] xl:h-[72px] text-accent rounded-md flex items-center xl:justify-center justify-start">
                               <div className="text-[28px]">{item?.icon}</div>
-                              <div className="absolute -bottom-0 rounded-md left-0 w-full h-0 bg-gradient-to-t from-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-all group-hover:h-8"></div>
+                              <div className="absolute -bottom-0 rounded-md left-0 w-full h-0 bg-gradient-to-t from-accent/40 to-transparent opacity-0 group-hover:opacity-100 duration-500 transition-all group-hover:h-1/2"></div>
+
+                              <div className="xl:hidden flex">
+                                {item?.title}
+                              </div>
                             </div>
                           </TooltipTrigger>
-                          <TooltipContent side="bottom">
+                          <TooltipContent sideOffset={15} side="bottom">
                             <p>{item?.description}</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
-                      <div className="flex-1 xl:hidden block">
-                        <p className="text-white/60">{item.title}</p>
-                        <p className="text-xl group-hover:underline transition-all group-hover:underline-offset-4">
-                          {item.description}
-                        </p>
-                      </div>
                     </a>
                   </motion.div>
                 </li>

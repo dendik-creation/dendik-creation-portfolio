@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string | any
   ) => {
-    if (e?.target.name == "phone") {
+    if (e && e?.target?.name == "phone") {
       setContactForm((prev) => ({
         ...prev,
         phone: allowedPhoneNumber(e?.target.value, prev),
@@ -236,6 +236,9 @@ const Contact: React.FC = () => {
                       <SelectItem value="UI/UX Design">UI/UX Design</SelectItem>
                       <SelectItem value="Wordpress Project">
                         Wordpress Project
+                      </SelectItem>
+                      <SelectItem value="Suggestions & Feedback">
+                        Suggestions & Feedback
                       </SelectItem>
                     </SelectGroup>
                   </SelectContent>

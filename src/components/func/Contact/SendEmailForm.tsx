@@ -17,7 +17,7 @@ const SendEmailForm = async (form: ContactForm) => {
     const selfResponse = await transporter.sendMail({
       from: {
         name: "Dendi' Setiawan",
-        address: googleUserApp.user,
+        address: googleUserApp.user || "",
       },
       to: form.email,
       subject: `${form?.subject}`,
@@ -26,7 +26,7 @@ const SendEmailForm = async (form: ContactForm) => {
     const submitterResponse = await transporter.sendMail({
       from: {
         name: "Kontak Portfolio",
-        address: googleUserApp.user,
+        address: googleUserApp.user || "",
       },
       to: targetEmail,
       subject: `${form?.subject}`,

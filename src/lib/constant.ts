@@ -3,6 +3,8 @@ export const googleUserApp = {
   pass: process.env.GOOGLE_APP_PASSWORD,
 };
 
+export const cvUrl = process.env.CV_URL ?? "";
+
 export const umamiAnalytics = {
   shareURL:
     "https://cloud.umami.is/share/132aI2gdoyz9vhLj/dendikcreation.my.id",

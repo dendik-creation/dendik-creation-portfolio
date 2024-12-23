@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import Socials from "@/components/common/Home/Socials";
 import Link from "next/link";
+import { cvUrl } from "@/lib/constant";
 
 const myname: {
   firstname: string;
@@ -107,9 +108,7 @@ const Profile: React.FC = () => {
         <Button variant={"outline"} size={"lg"} className="">
           <Link
             target="_blank"
-            href={
-              "https://drive.google.com/file/d/1eg14bUF8RGEvLhK5aOoRmtmRPRGr5SEF/view?usp=sharing"
-            }
+            href={cvUrl as string}
             className="capitalize flex items-center gap-2"
           >
             <span>Download CV</span>

@@ -9,8 +9,8 @@ const PageTransition = ({
 }>) => {
   const pathName = usePathname();
   return (
-    <AnimatePresence>
-      <div key={pathName}>
+    <AnimatePresence mode="wait">
+      <div key={pathName + "page"}>
         <motion.div
           initial={{ opacity: 1 }}
           animate={{

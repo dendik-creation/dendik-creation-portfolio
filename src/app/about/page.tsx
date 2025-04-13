@@ -16,10 +16,11 @@ import {
   FaJs,
   FaLaravel,
   FaNodeJs,
+  FaPython,
   FaReact,
   FaVuejs,
 } from "react-icons/fa";
-import { SiTailwindcss } from "react-icons/si";
+import { SiFlutter, SiTailwindcss } from "react-icons/si";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, AnimatePresence } from "framer-motion";
 import Experience from "@/components/common/About/Experience";
@@ -50,7 +51,7 @@ const aboutMe: AboutMeType = {
     },
     {
       fieldName: "Experience",
-      fieldValue: "3+ Years",
+      fieldValue: "4+ Years",
     },
     {
       fieldName: "Languages",
@@ -81,6 +82,16 @@ const experience: ExperienceMe = {
   description:
     "Learning and applying it in the world of work is the real experience.",
   items: [
+    {
+      company: "Innovasia",
+      position: "Backend Developer",
+      duration: "Jul 2024 - Now",
+      activities: [
+        "Develop and maintain enterprise software solutions using modern web technologies and frameworks.",
+        "Become a solution for business owners who want to be facilitated in marketing their products without leaving the WhatsApp for Business environment.",
+        "Connect thousands of consumers to sellers with a single broadcast (broadcasting) which according to the slogan reads “Turn Communication into Conversion” (Ubah Komunikasi Menjadi Konversi)",
+      ],
+    },
     {
       company: "PT Pura Rotogravure",
       position: "IT Development Internship",
@@ -132,6 +143,15 @@ const education: EducationMe = {
   description: "My journey while learning web programming",
   items: [
     {
+      institution: "Muria Kudus University",
+      degree: "Colleger Student - Information Technology",
+      duration: "2024 - Now (Expected 2028)",
+      activities: [
+        "Learning the architecture and how a computer works",
+        "Active & participate organization information technology",
+      ],
+    },
+    {
       institution: "SMK Negeri 2 Kudus",
       degree: "Student",
       duration: "2021 - 2024",
@@ -176,7 +196,7 @@ const education: EducationMe = {
 const skills: SkillMe = {
   icon: <Wrench />,
   title: "My Skills",
-  description: "Skills I have now in web programming",
+  description: "Skills I have now in programming",
   skill_list: [
     {
       icon: <FaHtml5 />,
@@ -217,6 +237,14 @@ const skills: SkillMe = {
     {
       icon: <FaLaravel />,
       name: "Laravel",
+    },
+    {
+      icon: <SiFlutter />,
+      name: "Flutter",
+    },
+    {
+      icon: <FaPython />,
+      name: "Python",
     },
   ],
 };

@@ -98,30 +98,41 @@ const Profile: React.FC = () => {
           ))}
         </div>
       </h1>
-      <p className="max-w-[500px] mb-9 text-white/80">
-        I excel at crafting elegant digital experience and I am proficient in
-        various programming languages & technologies
-      </p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          delay: 2.5,
+          ease: "circInOut",
+          duration: 0.5,
+        }}
+      >
+        <p className="max-w-[500px] mb-9 text-white/80">
+          I excel at crafting elegant digital experience and I am proficient in
+          various programming languages & technologies
+        </p>
 
-      {/* CV Download  & Social Media */}
-      <div className="flex flex-col xl:flex-row items-center gap-8">
-        <Button variant={"outline"} size={"lg"} className="">
-          <Link
-            target="_blank"
-            href={cvUrl as string}
-            className="capitalize flex items-center gap-2"
-          >
-            <span>Download CV</span>
-            <Download className="text-xl" />
-          </Link>
-        </Button>
-        <div className="mb-8 xl:mb-0">
-          <Socials
-            containerStyles="flex gap-6"
-            iconStyles="w-12 h-12 border border-accent rounded-full flex justify-center items-center text-accent text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"
-          />
+        {/* CV Download  & Social Media */}
+        <div className="flex flex-col xl:flex-row items-center gap-8">
+          <Button variant={"outline"} size={"lg"} className="">
+            <Link
+              target="_blank"
+              href={cvUrl as string}
+              className="capitalize flex items-center gap-2"
+            >
+              <span>Download CV</span>
+              <Download className="text-xl" />
+            </Link>
+          </Button>
+          <div className="mb-8 xl:mb-0">
+            <Socials
+              containerStyles="flex gap-6"
+              iconStyles="w-12 h-12 border border-accent rounded-full flex justify-center items-center text-accent text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"
+            />
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

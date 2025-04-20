@@ -46,8 +46,8 @@ const aboutMe: AboutMeType = {
       fieldValue: "Dendi' Setiawan",
     },
     {
-      fieldName: "Phone",
-      fieldValue: "(+62) 851 7974 2593",
+      fieldName: "Email",
+      fieldValue: "creationdendik729@gmail.com",
     },
     {
       fieldName: "Experience",
@@ -60,10 +60,6 @@ const aboutMe: AboutMeType = {
     {
       fieldName: "Freelance",
       fieldValue: "Available",
-    },
-    {
-      fieldName: "Email",
-      fieldValue: "creationdendik729@gmail.com",
     },
     {
       fieldName: "Nationally",

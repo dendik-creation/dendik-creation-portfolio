@@ -4,7 +4,7 @@ export const googleUserApp = {
 };
 
 export const cvUrl =
-  "https://drive.google.com/file/d/1vVS1_g3aw4P1apDYUTaRh2urQc4MYkYD/view";
+  "https://drive.google.com/file/d/16CfEZaJRufeEo_MfMU4XocDV2ucOfbd8/view?usp=sharing";
 
 export const umamiAnalytics = {
   shareURL:
